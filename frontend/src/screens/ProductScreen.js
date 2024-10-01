@@ -86,7 +86,6 @@ function ProductScreen({ match, history }) {
                                     <Image src={product.image} alt={product.name} fluid />
                                 </Col>
 
-
                                 <Col md={4}>
                                     <ListGroup variant="flush">
                                         <ListGroup.Item>
@@ -100,6 +99,34 @@ function ProductScreen({ match, history }) {
                                         <ListGroup.Item>
                                             <Rating value={product.rating} text={`${product.numReviews} reviews`} color={'#f8e825'} />
                                         </ListGroup.Item>
+
+                                        {product.accords && (
+                                            <ListGroup.Item>
+                                                <h5 className='text-info'>accords:</h5> 
+                                                <h5>{product.accords.split(',').map(item => item.trim()).join(', ')}</h5>
+                                            </ListGroup.Item>
+                                        )}
+
+                                        {product.top && (
+                                            <ListGroup.Item>
+                                                <h5 className='text-warning'>top:</h5> 
+                                                <h5>{product.top.split(',').map(item => item.trim()).join(', ')}</h5>
+                                            </ListGroup.Item>
+                                        )}
+
+                                        {product.middle && (
+                                            <ListGroup.Item>
+                                                <h5 className='text-warning'>middle:</h5> 
+                                                <h5>{product.middle.split(',').map(item => item.trim()).join(', ')}</h5>
+                                            </ListGroup.Item>
+                                        )}
+
+                                        {product.base && (
+                                            <ListGroup.Item>
+                                                <h5 className='text-warning'>base:</h5> 
+                                                <h5>{product.base.split(',').map(item => item.trim()).join(', ')}</h5>
+                                            </ListGroup.Item>
+                                        )}
 
                                         <ListGroup.Item>
                                             {product.description}
@@ -173,9 +200,9 @@ function ProductScreen({ match, history }) {
                             <Row>
                                 <Col md={8}>
                                     <h3>Reviews</h3>
-                                    {/* {product.reviews.length === 0 && <Message variant='info'>No Reviews</Message>}
+                                    {/* {product.reviews.length === 0 && <Message variant='info'>No Reviews</Message>} */}
 
-                                    <ListGroup variant='flush'>
+                                    {/* <ListGroup variant='flush'>
                                         {product.reviews.map((review) => (
                                             <ListGroup.Item key={review._id}>
                                                 <strong>{review.name}</strong>
@@ -240,7 +267,7 @@ function ProductScreen({ match, history }) {
                             <Row>
                                 <Col md={8}>
                                 <h3>이 향수와 유사한 향수</h3>
-
+                                    <Col width='20%'>dd </Col>
                                 </Col>
                             </Row>
                         </div>

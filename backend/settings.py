@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.0.6/ref/settings/
 import os
 from datetime import timedelta
 from pathlib import Path
+import environ  # 환경변수 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -127,15 +128,20 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 #     }
 # }
 
+env = environ.Env(DEBUG=(bool, True))
+
+environ.Env.read_env(
+    env_file=os.path.join(BASE_DIR, '.env')
+)
 #Database
 #https://docs.djangoproject.com/en/5.0.6/ref/settings/#databases
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mydb',
+        'NAME': 'capstone',
         'USER': 'postgres',
-        'PASSWORD': os.environ.get('aproject-dbpass'),
-        'HOST': os.environ.get('aproject-dbhost'),
+        'PASSWORD': env('pw'),
+        'HOST': env('host'),
         'PORT': '5432'
     }
 }
@@ -165,7 +171,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 

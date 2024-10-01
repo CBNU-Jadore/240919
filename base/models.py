@@ -37,7 +37,7 @@ class Perfume(models.Model):
     middle = models.CharField(max_length=300, null=True, blank=True)
     base = models.CharField(max_length=300, null=True, blank=True)
     rating = models.DecimalField(max_digits=7, decimal_places=2, null=True, blank=True)
-    votes = models.IntegerField(null=True, blank=True, default=0)
+    numReviews = models.IntegerField(null=True, blank=True, default=0)
     image = models.ImageField(null=True, blank=True)
     createdAt = models.DateTimeField(auto_now_add=True, null=True)
     _id = models.AutoField(primary_key=True, editable=False)
@@ -46,7 +46,7 @@ class Perfume(models.Model):
         return self.name
 
 class Review(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
+    product = models.ForeignKey(Perfume, on_delete=models.SET_NULL, null=True)
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=200, null=True, blank=True)
     rating = models.IntegerField(null=True, blank=True, default=0)

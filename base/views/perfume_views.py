@@ -145,13 +145,13 @@ def createPerfumeReview(request, pk):
         )
 
         reviews = product.review_set.all()
-        product.numReviews = len(reviews)
-
         total = 0
         for i in reviews:
             total += i.rating
-
-        product.rating = total / len(reviews)
+        
+        total += (product.numReviews) * (product.rating)    # 기존 크롤링한 리뷰 레이팅
+        product.numReviews += len(reviews)  # 기존 크롤링한 리뷰수에 새로 작성한 리뷰수 합
+        product.rating = total / product.numReviews
         product.save()
 
         return Response('Review Added')
