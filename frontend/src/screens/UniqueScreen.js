@@ -23,7 +23,9 @@ function UniqueScreen({ history }) {
 
     return (
         <div>
-            {!keyword && <ProductCarousel />}
+            <h1>당신과 가장 어울리는 향수</h1>
+            {/* {!keyword && <ProductCarousel />} */}
+            <ProductCarousel />
 
             <h1>Recommendations</h1>
             {loading ? <Loader />
