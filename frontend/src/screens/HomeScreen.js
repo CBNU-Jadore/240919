@@ -40,7 +40,7 @@ function HomeScreen({ history }) {
 
     return (
         <div>
-            {!keyword && <Banner/>}
+            {/* {!keyword && <Banner/>} */}
 
             <h1>Latest Perfumes</h1>
             {loading ? <Loader />

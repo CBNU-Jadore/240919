@@ -200,9 +200,9 @@ function ProductScreen({ match, history }) {
                             <Row>
                                 <Col md={8}>
                                     <h3>Reviews</h3>
-                                    {/* {product.reviews.length === 0 && <Message variant='info'>No Reviews</Message>} */}
+                                    {product.reviews.length === 0 && <Message variant='info'>No Reviews</Message>}
 
-                                    {/* <ListGroup variant='flush'>
+                                    <ListGroup variant='flush'>
                                         {product.reviews.map((review) => (
                                             <ListGroup.Item key={review._id}>
                                                 <strong>{review.name}</strong>
@@ -260,7 +260,7 @@ function ProductScreen({ match, history }) {
                                                     <Message variant='info'>Please <Link to='/login'>login</Link> to write a review</Message>
                                                 )}
                                         </ListGroup.Item>
-                                    </ListGroup> */}
+                                    </ListGroup>
                                 </Col>
                             </Row>
 

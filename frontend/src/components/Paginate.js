@@ -7,7 +7,7 @@ function Paginate({ pages, page, keyword = '', isAdmin = false }) {
         keyword = keyword.split('?keyword=')[1].split('&')[0]
     }
 
-    const pageLimit = 7; // 표시할 페이지 수
+    const pageLimit = 10; // 표시할 페이지 수
     let startPage, endPage;
 
     if (pages <= pageLimit) {
@@ -30,7 +30,8 @@ function Paginate({ pages, page, keyword = '', isAdmin = false }) {
 
     return (
         pages > 1 && (
-            <Pagination>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+            <Pagination >
                 {/* First Button */}
                 <LinkContainer
                     to={!isAdmin ?
@@ -88,6 +89,7 @@ function Paginate({ pages, page, keyword = '', isAdmin = false }) {
                     <Pagination.Last disabled={page === pages} />
                 </LinkContainer>
             </Pagination>
+            </div>
         )
     )
 }

@@ -100,6 +100,7 @@ class OrderSerializer(serializers.ModelSerializer):
 
 class PerfumeSerializer(serializers.ModelSerializer):
     image = serializers.SerializerMethodField() # image 값을 매번 동적으로 생성하게 변경, get_image 메서드 호출되게
+    reviews = serializers.SerializerMethodField(read_only=True) # PerfumeSerializer에 reviews 필드를 추가 후 해당 필드가 직렬화 과정에 포함되게
     class Meta:
         model = Perfume
         fields = '__all__'
