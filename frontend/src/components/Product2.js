@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-regular-svg-icons'
 
 
-function Product({ product }) {
+function Product2({ product }) {
     
     return (
         // <Card className="my-3 p-3 rounded">
@@ -23,26 +23,10 @@ function Product({ product }) {
                         <h4>{product.name}</h4>
                     </Card.Title>
                 </Link>
-                
-                <Card.Text as="div">
-                    <div className="my-3">
-                        <Rating value={product.rating} color={'#f8e825'} />
-                    </div>
-                </Card.Text>
-                
-                <Card.Text as="div">
-                    <div>
-                        <h5>{product.numReviews}개 리뷰</h5>
-                    </div>
-                </Card.Text>
-
-                {/* <Card.Text as="h3">
-                    ${product.price}
-                </Card.Text> */}
 
             </Card.Body>
         </Card>
     )
 }
 
-export default Product
+export default Product2

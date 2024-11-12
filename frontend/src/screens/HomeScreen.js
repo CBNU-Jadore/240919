@@ -40,14 +40,15 @@ function HomeScreen({ history }) {
 
     return (
         <div>
-            {/* {!keyword && <Banner/>} */}
+            
+            {!keyword && <Banner/> }
 
             <h1>Latest Perfumes</h1>
             {loading ? <Loader />
                 : error ? <Message variant='danger'>{error}</Message>
                     :
                     <div>
-                        <Row>
+                        <Row>{console.log(products)}
                             {products.map(product => (
                                 <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
                                     <Product product={product} />

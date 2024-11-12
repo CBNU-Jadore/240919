@@ -29,6 +29,20 @@ import {
     PRODUCT_TOP_SUCCESS,
     PRODUCT_TOP_FAIL,
 
+    RECOMMENDATION_DAILY_REQUEST,
+    RECOMMENDATION_DAILY_SUCCESS,
+    RECOMMENDATION_DAILY_FAIL,
+
+    RECOMMENDATION_BUSINESS_REQUEST,
+    RECOMMENDATION_BUSINESS_SUCCESS,
+    RECOMMENDATION_BUSINESS_FAIL,
+
+    RECOMMENDATION_DATE_REQUEST,
+    RECOMMENDATION_DATE_SUCCESS,
+    RECOMMENDATION_DATE_FAIL,
+
+
+
 } from '../constants/productConstants'
 
 
@@ -67,6 +81,27 @@ export const listTopProducts = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: PRODUCT_TOP_FAIL,
+            payload: error.response && error.response.data.detail
+                ? error.response.data.detail
+                : error.message,
+        })
+    }
+}
+
+export const listDailyRecommendations = () => async (dispatch) => {
+    try {
+        dispatch({ type: RECOMMENDATION_DAILY_REQUEST })
+
+        const { data } = await axios.get(`/api/products/recommendation/situation/daily/`)
+
+        dispatch({
+            type: RECOMMENDATION_DAILY_SUCCESS,
+            payload: data
+        })
+
+    } catch (error) {
+        dispatch({
+            type: RECOMMENDATION_DAILY_FAIL,
             payload: error.response && error.response.data.detail
                 ? error.response.data.detail
                 : error.message,

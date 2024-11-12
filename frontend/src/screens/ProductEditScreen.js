@@ -173,7 +173,7 @@ function ProductEditScreen({ match, history }) {
                                 </Form.Control>
                             </Form.Group>
 
-                            <Form.Group controlId='countinstock'>
+                            {/* <Form.Group controlId='countinstock'>
                                 <Form.Label>Stock</Form.Label>
                                 <Form.Control
 
@@ -183,7 +183,7 @@ function ProductEditScreen({ match, history }) {
                                     onChange={(e) => setCountInStock(e.target.value)}
                                 >
                                 </Form.Control>
-                            </Form.Group>
+                            </Form.Group> */}
 
                             <Form.Group controlId='category'>
                                 <Form.Label>Category</Form.Label>

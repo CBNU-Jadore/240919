@@ -65,9 +65,9 @@ function ProfileScreen({ history }) {
     }
     return (
         <Row>
-            <Col md={3}>
+            <Col md={12}>
                 {/* <h2>User Profile</h2> */}
-                <h2>회원정보</h2>
+                <h2>회원정보 수정</h2>
                 {message && <Message variant='danger'>{message}</Message>}
                 {error && <Message variant='danger'>{error}</Message>}
                 {loading && <Loader />}
@@ -128,8 +128,8 @@ function ProfileScreen({ history }) {
                 </Form>
             </Col>
 
-            <Col md={9}>
-                {/* <h2>My Orders</h2> */}
+            {/* <Col md={9}>
+                <h2>My Orders</h2>
                 <h2>즐겨찾기 목록</h2>
                 {loadingOrders ? (
                     <Loader />
@@ -167,7 +167,7 @@ function ProfileScreen({ history }) {
                                 </tbody>
                             </Table>
                         )}
-            </Col>
+            </Col> */}
         </Row>
     )
 }

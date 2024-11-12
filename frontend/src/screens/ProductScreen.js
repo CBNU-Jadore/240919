@@ -8,7 +8,11 @@ import Message from '../components/Message'
 import { listProductDetails, createProductReview } from '../actions/productActions'
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
 import axios from 'axios'
-
+import Product2 from '../components/Product2'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart as faHeartS } from '@fortawesome/free-solid-svg-icons'
+import { faHeart as faHeartR} from '@fortawesome/free-regular-svg-icons'
+import Product2NoName from '../components/Product2NoName'
 
 function ProductScreen({ match, history }) {
     // v1
@@ -43,6 +47,113 @@ function ProductScreen({ match, history }) {
         success: successProductReview,
     } = productReviewCreate
 
+    const rp1=product._id * 10 % 30000;
+    const rp2=product._id * 11 % 30000;
+    const rp3=product._id * 12 % 30000;
+    const rp4=product._id * 13 % 30000;
+    const product1 = [
+        {
+          "_id": rp1,
+          "image": `https://fimgs.net/mdimg/perfume/375x500.${rp1}.jpg`,
+          "reviews": [],
+          "name": "Scent of Dubrovnik",
+          "brand": "Macal Palma",
+          "accords": "citrus,woody,balsamic,powdery,floral,warm spicy",
+          "season": "winter",
+          "gender": "women",
+          "daynight": "1",
+          "longevity": 4,
+          "sillage": 2,
+          "top": "bergamot,orange",
+          "middle": "rose,lily-of-the-valley,jasmine,cinnamon,pink pepper",
+          "base": "amber,vanilla,patchouli,sandalwood",
+          "rating": "5.00",
+          "numReviews": 5,
+          "createdAt": null,
+          "user": null
+        },
+        {
+          "_id": rp2,
+          "image": `https://fimgs.net/mdimg/perfume/375x500.${rp2}.jpg`,
+          "reviews": [],
+          "name": "Les Quatre Saisons - Muguet de Printemps",
+          "brand": "Guerlain",
+          "accords": "floral,rose,white floral,citrus,green",
+          "season": "autumn",
+          "gender": "women",
+          "daynight": "2",
+          "longevity": 1,
+          "sillage": 4,
+          "top": "jasmine,lily-of-the-valley,bergamot,rose",
+          "middle": "",
+          "base": "",
+          "rating": "5.00",
+          "numReviews": 4,
+          "createdAt": null,
+          "user": null
+        },
+        {
+          "_id": rp3,
+          "image": `https://fimgs.net/mdimg/perfume/375x500.${rp3}.jpg`,
+          "reviews": [],
+          "name": "Cognac",
+          "brand": "Aftelier",
+          "accords": "woody,fresh spicy,sweet,citrus,warm spicy,fruity",
+          "season": "winter",
+          "gender": "women,men",
+          "daynight": "1",
+          "longevity": 3,
+          "sillage": 4,
+          "top": "cognac,ginger,olive,bitter orange",
+          "middle": "",
+          "base": "",
+          "rating": "5.00",
+          "numReviews": 2,
+          "createdAt": null,
+          "user": null
+        },
+        {
+          "_id": rp4,
+          "image": `https://fimgs.net/mdimg/perfume/375x500.${rp4}.jpg`,
+          "reviews": [],
+          "name": "Beleza",
+          "brand": "Abinoam",
+          "accords": "powdery,woody,musky,vanilla,balsamic,floral",
+          "season": "winter",
+          "gender": "women,men",
+          "daynight": "1",
+          "longevity": 2,
+          "sillage": 4,
+          "top": "musk,orchid,tahitian vanilla",
+          "middle": "",
+          "base": "",
+          "rating": "5.00",
+          "numReviews": 2,
+          "createdAt": null,
+          "user": null
+        },
+        {
+          "_id": 3754,
+          "image": "https://fimgs.net/mdimg/perfume/375x500.3754.jpg",
+          "reviews": [],
+          "name": "Garden Sensuel",
+          "brand": "Guerlain",
+          "accords": "white floral,aromatic,sweet,citrus,balsamic,yellow floral",
+          "season": "winter",
+          "gender": "women",
+          "daynight": "2",
+          "longevity": 3,
+          "sillage": 1,
+          "top": "rose",
+          "middle": "gardenia,peach,ylang-ylang",
+          "base": "sandalwood,tonka bean,vanilla",
+          "rating": "5.00",
+          "numReviews": 10,
+          "createdAt": null,
+          "user": null
+        }
+      ]
+
     useEffect(() => {
         if (successProductReview) {
             setRating(0)
@@ -54,8 +165,11 @@ function ProductScreen({ match, history }) {
 
     }, [dispatch, match, successProductReview])
 
+    const [isFavorite, setIsFavorite] = useState(false);
+
     const addToCartHandler = () => {
-        history.push(`/cart/${match.params.id}?qty=${qty}`)
+        setIsFavorite(!isFavorite)
+        history.push(`/cart/${match.params.id}?qty=${qty}`)  // 이동
     }
 
     const addToFavorites = () => {
@@ -82,18 +196,26 @@ function ProductScreen({ match, history }) {
                     : (
                         <div>
                             <Row>
-                                <Col md={8} className="d-flex justify-content-center">
+                                <Col md={7} className="d-flex justify-content-center">
+                                    <div md={6}>
                                     <Image src={product.image} alt={product.name} fluid />
+                                    </div>
+                                    
+                                    <div md={6}>
+
+                                    </div>
                                 </Col>
 
-                                <Col md={4}>
+                                <Col md={5}>
                                     <ListGroup variant="flush">
                                         <ListGroup.Item>
                                             <h3>{product.name}</h3>
-                                        </ListGroup.Item>
-
-                                        <ListGroup.Item>
-                                            <h4>{product.brand}</h4>
+                                            <h5>{product.brand}</h5>
+                                            <FontAwesomeIcon 
+                                                icon={isFavorite ? faHeartS : faHeartR} 
+                                                onClick={addToCartHandler} 
+                                                type='button'
+                                                color={'#db4455'} style={{ position: 'absolute', bottom: '10px', right: '10px', fontSize: '1.5rem' }}/>
                                         </ListGroup.Item>
 
                                         <ListGroup.Item>
@@ -102,31 +224,35 @@ function ProductScreen({ match, history }) {
 
                                         {product.accords && (
                                             <ListGroup.Item>
-                                                <h5 className='text-info'>accords:</h5> 
+                                                <h5 className='text-warning'>accords:</h5> 
                                                 <h5>{product.accords.split(',').map(item => item.trim()).join(', ')}</h5>
                                             </ListGroup.Item>
                                         )}
 
-                                        {product.top && (
-                                            <ListGroup.Item>
-                                                <h5 className='text-warning'>top:</h5> 
-                                                <h5>{product.top.split(',').map(item => item.trim()).join(', ')}</h5>
-                                            </ListGroup.Item>
-                                        )}
+                                        <ListGroup.Item>
+                                            {product.top && (
+                                                <>
+                                                    <h5 className='text-warning'>Top:</h5>
+                                                    <h5>{product.top.split(',').map(item => item.trim()).join(', ')}</h5>
+                                                </>
+                                            )}
 
-                                        {product.middle && (
-                                            <ListGroup.Item>
-                                                <h5 className='text-warning'>middle:</h5> 
-                                                <h5>{product.middle.split(',').map(item => item.trim()).join(', ')}</h5>
-                                            </ListGroup.Item>
-                                        )}
+                                            {product.middle && (
+                                                <>
+                                                    <h5 className='text-warning'>Middle:</h5>
+                                                    <h5>{product.middle.split(',').map(item => item.trim()).join(', ')}</h5>
+                                                </>
+                                            )}
 
-                                        {product.base && (
-                                            <ListGroup.Item>
-                                                <h5 className='text-warning'>base:</h5> 
-                                                <h5>{product.base.split(',').map(item => item.trim()).join(', ')}</h5>
-                                            </ListGroup.Item>
-                                        )}
+                                            {product.base && (
+                                                <>
+                                                    <h5 className='text-warning'>Base:</h5>
+                                                    <h5>{product.base.split(',').map(item => item.trim()).join(', ')}</h5>
+                                                </>
+                                            )}
+                                        </ListGroup.Item>
+
+                                        
 
                                         <ListGroup.Item>
                                             {product.description}
@@ -136,27 +262,10 @@ function ProductScreen({ match, history }) {
                                 </Col>
 
 
-                                {/* 수량 선택 <Col md={3}>
+                                {/* <Col md={3}>
                                     <Card>
                                         <ListGroup variant='flush'>
-                                            <ListGroup.Item>
-                                                <Row>
-                                                    <Col>Price:</Col>
-                                                    <Col>
-                                                        <strong>${product.price}</strong>
-                                                    </Col>
-                                                </Row>
-                                            </ListGroup.Item>
-                                            <ListGroup.Item>
-                                                <Row>
-                                                    <Col>Status:</Col>
-                                                    <Col>
-                                                        {product.countInStock > 0 ? 'In Stock' : 'Out of Stock'}
-                                                    </Col>
-                                                </Row>
-                                            </ListGroup.Item>
-
-                                            {product.countInStock > 0 && (
+                                            {
                                                 <ListGroup.Item>
                                                     <Row>
                                                         <Col>Qty</Col>
@@ -167,26 +276,23 @@ function ProductScreen({ match, history }) {
                                                                 onChange={(e) => setQty(e.target.value)}
                                                             >
                                                                 {
-
                                                                     [...Array(product.countInStock).keys()].map((x) => (
                                                                         <option key={x + 1} value={x + 1}>
                                                                             {x + 1}
                                                                         </option>
                                                                     ))
                                                                 }
-
                                                             </Form.Control>
                                                         </Col>
                                                     </Row>
                                                 </ListGroup.Item>
-                                            )}
+                                            }
 
 
                                             <ListGroup.Item>
                                                 <Button
                                                     onClick={addToCartHandler}
                                                     className='btn-block'
-                                                    disabled={product.countInStock == 0}
                                                     type='button'>
                                                     Add to Cart
                                                 </Button>
@@ -198,8 +304,22 @@ function ProductScreen({ match, history }) {
 
 
                             <Row>
-                                <Col md={8}>
-                                    <h3>Reviews</h3>
+                                <h3>이 향수와 유사한 향수</h3>
+{/* /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/}
+                                <Row>
+                                    {product1.slice(0, 4).map(product => (    // products
+                                    <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                                        <Product2NoName product={product} />
+                                    </Col>
+                                    ))}
+                                </Row>
+                                
+
+                            </Row>
+                            
+                            <Row>
+                                <Col md={12}>
+                                    <h3>상품 사용 후기</h3>
                                     {product.reviews.length === 0 && <Message variant='info'>No Reviews</Message>}
 
                                     <ListGroup variant='flush'>
@@ -213,7 +333,7 @@ function ProductScreen({ match, history }) {
                                         ))}
 
                                         <ListGroup.Item>
-                                            <h4>Write a review</h4>
+                                            <h4>리뷰 작성하기</h4>
 
                                             {loadingProductReview && <Loader />}
                                             {successProductReview && <Message variant='success'>Review Submitted</Message>}
@@ -264,12 +384,6 @@ function ProductScreen({ match, history }) {
                                 </Col>
                             </Row>
 
-                            <Row>
-                                <Col md={8}>
-                                <h3>이 향수와 유사한 향수</h3>
-                                    <Col width='20%'>dd </Col>
-                                </Col>
-                            </Row>
                         </div>
                     )
 

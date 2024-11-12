@@ -29,6 +29,19 @@ import {
     PRODUCT_TOP_REQUEST,
     PRODUCT_TOP_SUCCESS,
     PRODUCT_TOP_FAIL,
+
+    RECOMMENDATION_DAILY_REQUEST,
+    RECOMMENDATION_DAILY_SUCCESS,
+    RECOMMENDATION_DAILY_FAIL,
+
+    RECOMMENDATION_BUSINESS_REQUEST,
+    RECOMMENDATION_BUSINESS_SUCCESS,
+    RECOMMENDATION_BUSINESS_FAIL,
+
+    RECOMMENDATION_DATE_REQUEST,
+    RECOMMENDATION_DATE_SUCCESS,
+    RECOMMENDATION_DATE_FAIL,
+
 } from '../constants/productConstants'
 
 
@@ -167,3 +180,18 @@ export const productTopRatedReducer = (state = { products: [] }, action) => {
     }
 }
 
+export const perfumeDailyReducer = (state = { products: [] }, action) => {
+    switch (action.type) {
+        case RECOMMENDATION_DAILY_REQUEST:
+            return { loading: true, products: [] }
+
+        case RECOMMENDATION_DAILY_SUCCESS:
+            return { loading: false, products: action.payload, }
+
+        case RECOMMENDATION_DAILY_FAIL:
+            return { loading: false, error: action.payload }
+
+        default:
+            return state
+    }
+}

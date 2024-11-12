@@ -33,4 +33,10 @@ urlpatterns = [
 
     path('update/<str:pk>/', views.updatePerfume, name="product-update"),
     path('delete/<str:pk>/', views.deletePerfume, name="product-delete"),
+
+    path('recommendation/situation/daily/', views.getRecommendation_Daily, name='getRecommendation_Daily'),
+    path('recommendation/situation/business/', views.getRecommendation_Business, name='getRecommendation_Business'),
+    path('recommendation/situation/date/', views.getRecommendation_Date, name='getRecommendation_Date'),
+
+
 ]

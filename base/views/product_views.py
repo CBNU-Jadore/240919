@@ -46,6 +46,27 @@ def getTopProducts(request):
     serializer = ProductSerializer(products, many=True)
     return Response(serializer.data)
 
+# 상황별 추천 향수 - 데일리
+@api_view(['GET'])
+def getRecommendation_Daily(request):
+    products = Product.objects.filter(rating__gte=4).order_by('-rating')[15:20]
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)
+
+# 상황별 추천 향수 - 비즈니스 
+@api_view(['GET'])
+def getRecommendation_Business(request):
+    products = Product.objects.filter(rating__gte=4).order_by('-rating')[5:10]
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)
+
+# 상황별 추천 향수 - 소개팅
+@api_view(['GET'])
+def getRecommendation_Date(request):
+    products = Product.objects.filter(rating__gte=4).order_by('-rating')[10:15]
+    serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)
+
 # 특정 상품을 조회하여 그 데이터를 클라이언트에 JSON 형식으로 반환
 @api_view(['GET'])
 def getProduct(request, pk):

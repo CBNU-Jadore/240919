@@ -4,8 +4,7 @@ import { Navbar, Nav, Container, Row, NavDropdown } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { logout } from '../actions/userActions'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMagnifyingGlass, faSprayCanSparkles, faUser } from '@fortawesome/free-solid-svg-icons'
-
+import { faMagnifyingGlass, faSprayCanSparkles, faUser, faHeart} from '@fortawesome/free-solid-svg-icons'
 
 function Header() {
 
@@ -20,7 +19,7 @@ function Header() {
 
     return (
         <header>
-            <Navbar bg="white" variant="light" expand="lg" collapseOnSelect>
+            <Navbar style={{ backgroundColor: '#f8f9fa' }}  variant="light" expand="lg" collapseOnSelect >
                 <Container>
                     <LinkContainer to='/'>
                         <Navbar.Brand>Your Perfume</Navbar.Brand>
@@ -32,15 +31,15 @@ function Header() {
                         <Nav className="ml-auto">
 
                             <LinkContainer to='/search'>
-                                <Nav.Link ><FontAwesomeIcon icon={faMagnifyingGlass} />Search</Nav.Link>
+                                <Nav.Link ><FontAwesomeIcon icon={faMagnifyingGlass} className='mr-1'/>Search</Nav.Link>
                             </LinkContainer>
 
                             <LinkContainer to='/cart'>
-                                <Nav.Link ><i className="fas fa-shopping-cart"></i>Cart</Nav.Link>
+                                <Nav.Link ><FontAwesomeIcon icon={faHeart} className='mr-1'/>Favorites</Nav.Link>
                             </LinkContainer>
 
                             <LinkContainer to='/unique'>
-                                <Nav.Link ><FontAwesomeIcon icon={faSprayCanSparkles} />Unique</Nav.Link>
+                                <Nav.Link ><FontAwesomeIcon icon={faSprayCanSparkles} className='mr-1'/>Unique</Nav.Link>
                             </LinkContainer>
 
                             {userInfo ? (
@@ -69,9 +68,9 @@ function Header() {
                                         <NavDropdown.Item>Products</NavDropdown.Item>
                                     </LinkContainer>
 
-                                    <LinkContainer to='/admin/orderlist'>
+                                    {/* <LinkContainer to='/admin/orderlist'>
                                         <NavDropdown.Item>Orders</NavDropdown.Item>
-                                    </LinkContainer>
+                                    </LinkContainer> */}
 
                                 </NavDropdown>
                             )}

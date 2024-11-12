@@ -21,12 +21,12 @@ function ProductCarousel() {
             ? <Message variant='danger'>{error}</Message>
             : (
                 <Carousel pause='hover' className='bg-dark'>
-                    {products.map(product => (
+                    {products.map((product, index) => (
                         <Carousel.Item key={product._id}>
                             <Link to={`/product/${product._id}`}>
                                 <Image src={product.image} alt={product.name} fluid />
                                 <Carousel.Caption className='carousel.caption'>
-                                    <h4>{product.name} (${product.price})</h4>
+                                    <h4>Best #{index + 1}. {product.name}</h4>
                                 </Carousel.Caption>
                             </Link>
                         </Carousel.Item>

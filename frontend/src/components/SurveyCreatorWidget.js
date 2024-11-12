@@ -15,8 +15,8 @@ function SurveyCreatorWidget() {
   survey.applyTheme(surveyThemeJson);
   const alertResults = useCallback((sender) => {
     const results = JSON.stringify(sender.data);
-    alert(results);
-    //alert("완료되었습니다.");
+    // alert(results);
+    alert("완료되었습니다.");
     
     // saveSurveyResults(
     //   "https://your-web-service.com/" + SURVEY_ID,

@@ -2,7 +2,7 @@ export const surveyJson = {
   "locale": "ko",
   "logoPosition": "right",
   "completedHtml": {
-    "ko": "<h3>조사해 주셔서 감사합니다.</h3>"
+    "ko": "<h3>결과 생성 중입니다.</h3>"
   },
   "pagePrevText": {
     "ko": "이전"
@@ -227,5 +227,5 @@ export const surveyJson = {
       ]
     }
   ],
-  "navigateToUrl": "/unique"
+  "navigateToUrl": "/#/unique"
 };
